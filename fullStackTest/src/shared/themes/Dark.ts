@@ -14,15 +14,16 @@ export const DarkTheme = createTheme({
          primary:'#fff'
       },
       primary: {
-         main: red[600],
-         dark: red[800],
-         light: red[500],
-         contrastText: '#fff',
-      },
-      secondary: {
          main: blue[800],
          dark: blue[900],
          light: blue[700],
+         contrastText: '#fff',
+
+      },
+      secondary: {
+         main: red[600],
+         dark: red[800],
+         light: red[500],
          contrastText: '#fff',
       },
       background: {

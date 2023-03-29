@@ -20,11 +20,15 @@ interface ILeftDrawer {
 }
 const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
   const theme = useTheme();
-  const { toggleTheme } = useAppThemeContext();
+  const { toggleTheme, themeName } = useAppThemeContext();
 
   React.useEffect(() => {console.log(theme)},[])
 
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  function handleClick() {
+    console.log(theme)
+  }
 
   const {isDrawerOpen, toggleDrawerOpen} = useDrawerContext();
   return (
@@ -53,7 +57,7 @@ const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
             <Divider />
             <Box flex={1}>
               <List component={"nav"}>
-                <ListItemButton>
+                <ListItemButton onClick={handleClick}>
                   <ListItemIcon>
                     <Home />
                   </ListItemIcon>
@@ -63,7 +67,7 @@ const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
                   <ListItemIcon>
                     <DarkMode />
                   </ListItemIcon>
-                  <Switch onChange={toggleTheme} />
+                  <Switch onChange={toggleTheme} checked={themeName === 'dark'} />
                 </ListItemButton>
               </List>
             </Box>

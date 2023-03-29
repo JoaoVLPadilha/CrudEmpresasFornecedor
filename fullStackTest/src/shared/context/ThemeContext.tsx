@@ -29,6 +29,7 @@ export const AppThemeProvider: React.FC<Props> = ({ children }) => {
    }, []);
 
     const theme = React.useMemo(() => {
+      console.log(themeName)
       return themeName === 'light' ? LightTheme : DarkTheme;
    }, [themeName]);
 
