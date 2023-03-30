@@ -5,7 +5,6 @@ const Home = () => {
   React.useEffect(() => {console.log('oi')},[])
   return (
     <Box>
-      <Navbar/>
       <Typography>New Home</Typography>
     </Box>
   )

@@ -11,13 +11,13 @@ function App() {
   return (
     <>
       <AppThemeProvider>
-        <DrawerProvider>
-          <LeftDrawer>
-            <BrowserRouter>
+        <BrowserRouter>
+          <DrawerProvider>
+            <LeftDrawer>
               <AppRoutes />
-            </BrowserRouter>
-          </LeftDrawer>
-        </DrawerProvider>
+            </LeftDrawer>
+          </DrawerProvider>
+        </BrowserRouter>
       </AppThemeProvider>
     </>
   );
