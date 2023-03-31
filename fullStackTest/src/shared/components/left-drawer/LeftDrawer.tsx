@@ -74,7 +74,7 @@ const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
             <Divider />
             <Box flex={1}>
               <List component={'nav'}>
-                <ListItemButton onClick={handleClick}>
+                <ListItemButton onClick={() => navigate('/home')}>
                   <ListItemIcon>
                     <Home />
                   </ListItemIcon>
@@ -83,11 +83,11 @@ const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
 
                 <Divider />
 
-                <ListItemButton onClick={handleClick}>
+                <ListItemButton onClick={() => navigate('/empresa')}>
                   <ListItemIcon>
                     <Business />
                   </ListItemIcon>
-                  <ListItemText primary="Empresa" />
+                  <ListItemText primary="Empresa"/>
                 </ListItemButton>
                 <ListItemButton onClick={() => navigate('/criar-empresa')}>
                   <ListItemIcon>
@@ -105,13 +105,13 @@ const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
                 <Divider />
                 <Divider />
 
-                <ListItemButton onClick={handleClick}>
+                <ListItemButton onClick={() => navigate('/fornecedor')}>
                   <ListItemIcon>
                     <Store />
                   </ListItemIcon>
                   <ListItemText primary="Fornecedor" />
                 </ListItemButton>
-                <ListItemButton onClick={handleClick}>
+                <ListItemButton onClick={() => navigate('/criar-fornecedor')}>
                   <ListItemIcon>
                     <Add />
                   </ListItemIcon>
@@ -140,7 +140,7 @@ const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
           </Box>
         </Drawer>
         <Navbar/>
-        <Box height={'100vh'} marginLeft={mobile ? 0 : theme.spacing(28)} padding={2} sx={{backgroundColor: theme.palette.background.default}}>
+        <Box marginLeft={mobile ? 0 : theme.spacing(28)} padding={2} sx={{backgroundColor: theme.palette.background.default}}>
           {children}
         </Box>
       </Box>

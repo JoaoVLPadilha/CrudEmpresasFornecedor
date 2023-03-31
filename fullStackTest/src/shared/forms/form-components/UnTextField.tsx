@@ -36,20 +36,20 @@ const UnTextField: React.FC<TUnTextField> = ({ name,invisible, ...rest }) => {
          sx={{
             display:invisible ?'none':'block',
             '& label.Mui-focused': {
-               color: theme.palette.primary,
+               color: `${theme.palette.primary}`,
             },
             '& .MuiInput-underline:after': {
                borderBottomColor: 'green',
             },
             '& .MuiOutlinedInput-root': {
-               // '& fieldset': {
-               //    borderColor: themeName === 'dark' ?'#CCCCCC': '#aaa',
-               // },
+               '& fieldset': {
+                  borderColor: `${theme.palette.primary}`,
+               },
                '&:hover fieldset': {
-                  borderColor: theme.palette.primary,
+                  borderColor: `${theme.palette.primary}`,
                },
                '&.Mui-focused fieldset': {
-                  borderColor: theme.palette.primary,
+                  borderColor: `${theme.palette.primary}`,
                },
             },
          }}

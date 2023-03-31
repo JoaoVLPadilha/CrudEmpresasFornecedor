@@ -7,7 +7,7 @@ import { red, blue } from '@mui/material/colors';
 // Para funcionar esse tema temos que envolver toda aplicação dentro de ThemeProvider como feiton o App.tsx
 
 export const DarkTheme = createTheme({
-
+      
    palette: {
       mode:'dark',
       text:{
@@ -33,6 +33,7 @@ export const DarkTheme = createTheme({
       },
    },
    typography: {
+      fontFamily: 'Roboto',
       allVariants: {
         color: '#fff'
       }
