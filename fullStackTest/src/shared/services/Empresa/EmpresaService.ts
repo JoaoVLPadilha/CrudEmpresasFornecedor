@@ -3,6 +3,7 @@ import { Api } from "..";
 
 
 export interface IEmpresa {
+  id?: number
   nomeFantasia:string;
   cnpj: string;
   cep:string;

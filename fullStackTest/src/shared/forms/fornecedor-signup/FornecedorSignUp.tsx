@@ -11,6 +11,10 @@ import {
 import { Form } from '@unform/web';
 import axios from 'axios';
 import React from 'react';
+import {
+  FornecedorService,
+  IFornecedor,
+} from '../../services/Fornecedor/FornecedorService';
 import UnTextField from '../form-components/UnTextField';
 
 interface IEndereco {
@@ -29,6 +33,7 @@ interface IDataCadastro {
   cpf?: string;
   rg?: string;
   dataNascimento?: string;
+  email?: string;
   cep: string;
 }
 const FornecedorSignUp = () => {
@@ -42,6 +47,16 @@ const FornecedorSignUp = () => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  function stringToDate(texto: string | undefined): Date {
+    if (texto) {
+      const [data, tempo] = texto.split(' ');
+      const [dia, mes, ano] = data.split('/').map(Number);
+      return new Date(ano, mes - 1, dia);
+    } else {
+      return new Date(2000);
+    }
+  }
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value === 'cnpj' || event.target.value === 'cpf')
       setTypeFornecedor(event.target.value);
@@ -51,28 +66,39 @@ const FornecedorSignUp = () => {
     setInputWidth(mobile ? '100%' : '70%');
   }, []);
 
-  function handleSubmit(data: IDataCadastro) {
-    const objCadastro: IDataCadastro = {
+  const handleSubmit = async (data: IFornecedor) => {
+    const objCadastro: IFornecedor = {
       [typeFornecedor]: data[typeFornecedor],
+      nome: data.nome,
       cep: data.cep,
     };
     if (typeFornecedor === 'cnpj') {
-      const objCadastro: IDataCadastro = {
+      const objCadastro: IFornecedor = {
         [typeFornecedor]: data[typeFornecedor],
         cep: data.cep,
-        razaoSocial: data.razaoSocial,
+        nome: data.nome,
+        tipoFornecedor: 'J',
+        email: data.email,
       };
-      console.log(objCadastro);
+      const response = await FornecedorService.create(objCadastro);
+      console.log(response);
+      console.log('daads', objCadastro);
     } else {
-      const objCadastro: IDataCadastro = {
+      const objCadastro: IFornecedor = {
         [typeFornecedor]: data[typeFornecedor],
+        nome: data.nome,
         cep: data.cep,
         rg: data.rg,
-        dataNascimento: data.dataNascimento,
+        tipoFornecedor: 'F',
+        dataNascimento: JSON.parse(JSON.stringify(stringToDate(data.dataNascimento))),
+        email: data.email,
       };
       console.log(objCadastro);
+
+      const response = await FornecedorService.create(objCadastro);
+      console.log(response);
     }
-  }
+  };
 
   function handleBuscaCEP() {
     const cep = formRef.current.getFieldValue('cep');
@@ -93,8 +119,9 @@ const FornecedorSignUp = () => {
 
   React.useEffect(() => {
     const newDate = new Date(2022, 4, 20);
-
-    console.log(JSON.parse(JSON.stringify(newDate)));
+    // console.log(newDate)
+    const value = stringToDate('20/04/2000');
+    console.log(JSON.parse(JSON.stringify(value)));
   }, []);
   return (
     <>
@@ -143,7 +170,9 @@ const FornecedorSignUp = () => {
               </Box>
             </>
           )}
-
+          <Box width={inputWidth} mt={2}>
+            <UnTextField label="E-mail" name="email" />
+          </Box>
           <Box width={inputWidth} marginTop={2} display={'flex'}>
             <Box mr={1} width="100%">
               <TextField

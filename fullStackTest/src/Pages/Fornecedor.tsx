@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Divider, Grid, Paper, styled, Typography } from '@mui/material';
 import CardFornecedor from '../shared/components/card-fornecedor/CardFornecedor';
+import { FornecedorService, isTotalFornecedor } from '../shared/services/Fornecedor/FornecedorService';
 
 interface IFornecedor {
   nome: string;
@@ -32,9 +33,23 @@ const Fornecedor = () => {
     nome:'Yakult'
   },
 ]
-  React.useEffect(() => {
-    setFornecedor(FornecedorMock)
-  },[])
+React.useEffect(() => {
+  async function getEmpresas() {
+    const response = await FornecedorService.getAll()
+    console.log(response)
+
+    if(isTotalFornecedor(response)){
+      console.log('dsada',response.data[0].dataNascimento)
+      setFornecedor(response.data)
+    } else {
+      console.log('isNot')
+
+    }
+ }
+  
+ getEmpresas()
+
+}, [])
   return (
     <Box>
       <Grid container spacing={2}>
