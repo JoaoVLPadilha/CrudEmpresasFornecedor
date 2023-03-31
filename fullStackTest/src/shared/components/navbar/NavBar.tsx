@@ -61,14 +61,6 @@ const Navbar:React.FC<INavbar> = () => {
         <ButtonBase onClick={toggleDrawerOpen}>
           <MenuIcon sx={{ display: { xs: "block", sm: "none" } }} />
         </ButtonBase>
-        <Icons>
-          <Badge badgeContent={4} color="primary">
-            <Mail />
-          </Badge>
-          <Badge badgeContent={2} color="primary">
-            <Notifications />
-          </Badge>
-        </Icons>
       </StyledToolbar>
       <Menu
         id="demo-positioned-menu"
