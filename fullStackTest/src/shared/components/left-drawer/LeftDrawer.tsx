@@ -95,7 +95,7 @@ const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
                   </ListItemIcon>
                   <ListItemText primary="Criar" />
                 </ListItemButton>
-                <ListItemButton onClick={handleClick}>
+                <ListItemButton onClick={() => navigate('/editar-empresa')}>
                   <ListItemIcon>
                     <Edit />
                   </ListItemIcon>
@@ -117,7 +117,7 @@ const LeftDrawer: React.FC<ILeftDrawer> = ({ children }) => {
                   </ListItemIcon>
                   <ListItemText primary="Criar" />
                 </ListItemButton>
-                <ListItemButton onClick={handleClick}>
+                <ListItemButton onClick={() => navigate('/editar-fornecedor')}>
                   <ListItemIcon>
                     <Edit />
                   </ListItemIcon>

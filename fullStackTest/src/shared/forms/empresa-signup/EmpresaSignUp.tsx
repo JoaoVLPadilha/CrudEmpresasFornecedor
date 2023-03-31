@@ -2,6 +2,7 @@ import { Box, Button, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Form } from '@unform/web';
 import axios from 'axios';
 import React from 'react';
+import { EmpresaService, IEmpresa } from '../../services/Empresa/EmpresaService';
 import UnTextField from '../form-components/UnTextField';
 
 interface IEndereco{
@@ -15,7 +16,7 @@ interface IEndereco{
 }
 
 interface IDataCadastro {
-  razaoSocial:string,
+  nomeFantasia:string,
   cnpj: string,
   cep: string,
 }
@@ -29,17 +30,9 @@ const EmpresaSignUp = () => {
   React.useEffect(() => {
     setInputWidth(mobile ? '100%' : '70%');
   }, []);
-  function handleSubmit(data: IDataCadastro) {
-    const objCadastro = {
-      razaoSocial: data.razaoSocial,
-      cnpj: data.cnpj,
-      cep: data.cep
-    }
 
-    console.log(objCadastro)
 
-    console.log(data);
-  }
+
   function handleBuscaCEP(){
     const cep = formRef.current.getFieldValue('cep')
     console.log(cep)
@@ -56,10 +49,25 @@ const EmpresaSignUp = () => {
     formRef!.current!.setFieldValue('estado', data.data.uf);
     formRef!.current!.setFieldValue('cep', data.data.cep.replace('-',''));
   })}
+
+  const handleSubmit = async (dataSubmit: IDataCadastro) => {
+    const objCadastro: IEmpresa = {
+      nomeFantasia: dataSubmit.nomeFantasia,
+      cnpj: dataSubmit.cnpj,
+      cep: dataSubmit.cep
+    }
+    console.log(objCadastro)
+
+    const response = await EmpresaService.create(objCadastro)
+
+    console.log(response);
+    
+  }
   return (
     <>
       <Form onSubmit={handleSubmit} ref={formRef}>
         <Box
+          mt={1}
           display="flex"
           flexDirection={'column'}
           alignItems={'center'}
@@ -69,7 +77,7 @@ const EmpresaSignUp = () => {
             <UnTextField label="CNPJ" name="cnpj" />
           </Box>
           <Box width={inputWidth} marginTop={2}>
-            <UnTextField label="Razão Social" name="razaoSocial" />
+            <UnTextField label="Nome Fantasia" name="nomeFantasia" />
           </Box>
           <Box width={inputWidth} marginTop={2} display={'flex'}>
             <Box mr={1} width='100%'>

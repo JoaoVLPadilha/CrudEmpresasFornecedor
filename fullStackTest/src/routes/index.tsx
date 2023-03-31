@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Empresa from '../Pages/Empresa';
+import EmpresaEdit from '../Pages/EmpresaEdit';
 import Fornecedor from '../Pages/Fornecedor';
 import Home from '../Pages/Home';
 import EmpresaSignUp from '../shared/forms/empresa-signup/EmpresaSignUp';
@@ -11,6 +12,7 @@ const AppRoutes = () => {
       <Route path="home" element={<Home/>}/>
       
       <Route path="criar-empresa" element={<EmpresaSignUp/>}/>
+      <Route path="editar-empresa" element={<EmpresaEdit/>}/>
       <Route path="empresa" element={<Empresa/>}/>
 
 

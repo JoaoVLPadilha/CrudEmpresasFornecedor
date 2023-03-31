@@ -30,7 +30,6 @@ interface IDataCadastro {
   rg?: string;
   dataNascimento?: string;
   cep: string;
-
 }
 const FornecedorSignUp = () => {
   const [inputWidth, setInputWidth] = React.useState('100%');
@@ -61,17 +60,17 @@ const FornecedorSignUp = () => {
       const objCadastro: IDataCadastro = {
         [typeFornecedor]: data[typeFornecedor],
         cep: data.cep,
-        razaoSocial: data.razaoSocial
+        razaoSocial: data.razaoSocial,
       };
-      console.log(objCadastro)
+      console.log(objCadastro);
     } else {
       const objCadastro: IDataCadastro = {
         [typeFornecedor]: data[typeFornecedor],
         cep: data.cep,
         rg: data.rg,
-        dataNascimento: data.dataNascimento
+        dataNascimento: data.dataNascimento,
       };
-      console.log(objCadastro)
+      console.log(objCadastro);
     }
   }
 
@@ -92,12 +91,11 @@ const FornecedorSignUp = () => {
     );
   }
 
-
   React.useEffect(() => {
-    const newDate = new Date(2022,4,20)
-    
-    console.log(JSON.parse(JSON.stringify(newDate)))
-  },[])
+    const newDate = new Date(2022, 4, 20);
+
+    console.log(JSON.parse(JSON.stringify(newDate)));
+  }, []);
   return (
     <>
       <Form onSubmit={handleSubmit} ref={formRef}>
@@ -132,11 +130,11 @@ const FornecedorSignUp = () => {
               name={typeFornecedor}
             />
           </Box>
-          {typeFornecedor === 'cpf' ? (
+          <Box width={inputWidth} mt={2}>
+            <UnTextField label="Nome" name="nome" />
+          </Box>
+          {typeFornecedor === 'cpf' && (
             <>
-              <Box width={inputWidth} mt={2}>
-                <UnTextField label="Nome" name="nome" />
-              </Box>
               <Box width={inputWidth} mt={2}>
                 <UnTextField label="Data de Nascimento" name="dataNascimento" />
               </Box>
@@ -144,10 +142,6 @@ const FornecedorSignUp = () => {
                 <UnTextField label="RG" name="rg" />
               </Box>
             </>
-          ) : (
-            <Box width={inputWidth} marginTop={2}>
-              <UnTextField label="Razão Social" name="razaoSocial" />
-            </Box>
           )}
 
           <Box width={inputWidth} marginTop={2} display={'flex'}>
